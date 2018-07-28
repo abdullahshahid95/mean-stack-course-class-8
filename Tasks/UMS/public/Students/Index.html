@@ -1,0 +1,48 @@
+﻿<div ng-controller="studentsIndexController">
+    <div id="deleteMessage" class="alert alert-success alert-dismissible hide">
+            <!-- <button onclick="hideDiv()" class="close" aria-label="close">&times;</button> -->
+            <strong>Record deleted successfully!</strong>
+    </div>
+    <br />
+    <a href="/#!/newstudent" class=" btn btn-primary" style="float: right;">Add Student</a>
+    
+    <h2>Students</h2>
+    <table id ="students" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Batch</th>
+                <th>Department</th>
+                <th>Program</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in students">
+                <td>
+                    <a href="/#!/students/{{student.id}}">{{student.name}}</a>
+                </td>
+                <td>
+                    {{student.batchYear}}
+                </td>
+                <td>
+                    {{student.department}}
+                </td>
+                <td>
+                    {{student.program}}
+                </td>
+                <td>
+                    <a href="/#!/students/edit/{{student.id}}">Edit</a>
+                </td>
+                <td>
+                    <button ng-click="showConfirm($event, student.id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        
+            <!-- <script type="text/javascript" charset="utf-8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js">
+            </script> -->
+        
+</div>

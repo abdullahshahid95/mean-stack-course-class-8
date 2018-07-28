@@ -1,0 +1,200 @@
+﻿<div ng-controller="studentFormController">
+    <h1 ng-show="studentId != 0">Edit Student</h1>
+    <h1 ng-show="studentId == 0">Add New Student</h1>
+    <br>
+    <h3  ng-show="studentId == 0">Select Program</h3>
+    <form name="studentForm" novalidate>
+        <div class="form-group" ng-show="studentId == 0">
+            <label for="degreeProgram">Degree Program</label>
+            <select name="degreeProgram" ng-model="selectedDegreeProgram" id="degreeProgram" class="form-control" required ng-options="degreeProgram.name for degreeProgram in degreePrograms track by degreeProgram.id">
+            </select>
+        </div>
+        <div class="form-group" ng-show="studentId == 0">
+            <label for="studyProgram">Study Program</label>
+            <select name="studyProgram" ng-model="selectedStudyProgram" id="studyProgram" class="form-control" ng-options="studyProgram.name for studyProgram in studyPrograms track by studyProgram.id" required>
+            </select>
+        </div>
+        <div class="form-group" ng-show="studentId == 0">
+            <label for="batchYear">Batch Year</label>
+            <input type="text" name="batchYear" ng-model="batchYear" id="batchYear" class="form-control" required>
+            <p ng-show="studentForm.batchYear.$invalid && !studentForm.batchYear.$pristine" class="help-block">Batch Year is required</p>
+        </div>
+        <hr>
+        <h3>Personal Information</h3>
+        <div class="form-group" ng-show="studentId == 0">
+            <label for="picture">Picture</label>
+            <input type="file" name="picture" image-upload-model="picture" id="picture" style="display:inline-block" required>
+            <p ng-show="studentForm.picture.$invalid" class="help-block">Picture is required</p>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" ng-model="studentName" id="name" class="form-control" required>
+            <p ng-show="studentForm.name.$invalid && !studentForm.name.$pristine" class="help-block">Name is required</p>
+        </div>
+        <div class="form-group">
+            <label for="fatherName">Father Name</label>
+            <input type="text" name="fatherName" ng-model="fatherName" id="fatherName" class="form-control" required>
+            <p ng-show="studentForm.fatherName.$invalid && !studentForm.fatherName.$pristine" class="help-block">Father Name is required</p>
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="radio" ng-model="gender" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" ng-model="gender" id="female" name="gender" value="Female" required> 
+            <label for="female">Female</label>
+        </div>
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <br>
+            Day<select ng-model="selectedDay" id="day" required ng-options="day for day in days track by day">
+            </select>
+            Month<select ng-model="selectedMonth" id="month" required ng-options="month for month in months track by month">
+            </select>
+            Year<select ng-model="selectedYear" id="year" required ng-options="year for year in years track by year">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="placeOfBirth">Place of Birth</label>
+            <input type="text" name="placeOfBirth" ng-model="placeOfBirth" id="placeOfBirth" class="form-control" required>
+            <p ng-show="studentForm.placeOfBirth.$invalid && !studentForm.placeOfBirth.$pristine" class="help-block">Place of Birth is required</p>
+        </div>
+        <div class="form-group">
+            <label for="nationality">Nationality</label>
+            <input type="text" name="nationality" ng-model="nationality" id="nationality" class="form-control" required>
+            <p ng-show="studentForm.nationality.$invalid && !studentForm.nationality.$pristine" class="help-block">Nationality is required</p>
+        </div>
+        <div class="form-group">
+            <label for="province">Province</label>
+            <input type="text" name="province" ng-model="province" id="province" class="form-control" required>
+            <p ng-show="studentForm.province.$invalid && !studentForm.province.$pristine" class="help-block">Province is required</p>
+        </div>
+        <div class="form-group">
+            <label for="cinic">CNIC</label>
+            <input type="text" name="cnic" ng-model="cnic" id="cnic" class="form-control" required>
+            <p ng-show="studentForm.cnic.$invalid && !studentForm.cnic.$pristine" class="help-block">CNIC is required</p>
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile</label>
+            <input type="text" name="mobileNumber" ng-model="mobileNumber" id="mobileNumber" class="form-control" required>
+            <p ng-show="studentForm.mobileNumber.$invalid && !studentForm.mobileNumber.$pristine" class="help-block">Mobile Number is required</p>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone</label>
+            <input type="text" name="phoneNumber" ng-model="phoneNumber" id="phoneNumber" class="form-control" required>
+            <p ng-show="studentForm.phoneNumber.$invalid && !studentForm.phoneNumber.$pristine" class="help-block">Phone Number is required</p>
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" name="email" ng-model="email" id="email" class="form-control" required>
+            <p ng-show="studentForm.email.$invalid && !studentForm.email.$pristine" class="help-block">Invalid input</p>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea ng-model="address" name="address" id="address" cols="30" rows="5" class="form-control" required></textarea>
+            <p ng-show="studentForm.address.$invalid && !studentForm.address.$pristine" class="help-block">Address is required</p>
+        </div>
+        <hr>
+        <h3>Qualification</h3>
+        <div class="form-group">
+            <label for="sscBoard">SSC Board</label>
+            <select ng-model="selectedSscBoard" id="sscBoard" class="form-control" required>
+                <option value="Board of Seconday Education Karachi">Board of Secondary Education Karachi</option>
+                <option value="Board of Seconday Education Sukker">Board of Secondary Education Sukker</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="sscTotal">Total Marks</label>
+            <input type="text" name="sscTotal" ng-model="sscTotal" id="sscTotal" class="form-control" required>
+            <p ng-show="studentForm.sscTotal.$invalid && !studentForm.sscTotal.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="sscObtained">Obtained Marks</label>
+            <input type="text" name="sscObtained" ng-model="sscObtained" id="sscObtained" class="form-control" required>
+            <p ng-show="studentForm.sscObtained.$invalid && !studentForm.sscObtained.$pristine" class="help-block">Field required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="sscSeat">Seat Number</label>
+            <input type="text" name="sscSeat" ng-model="sscSeat" id="sscSeat" class="form-control" required>
+            <p ng-show="studentForm.sscSeat.$invalid && !studentForm.sscSeat.$pristine" class="help-block">Field is required</p>
+        </div>
+        <div class="form-group">
+            <label for="hscBoard">HSC Board</label>
+            <select ng-model="selectedHscBoard" id="hscBoard" class="form-control" required>
+                <option value="Intermediate Board Karachi">Intermediate Board Karachi</option>
+                <option value="Intermediate Board Sukker">Intermediate Board Sukker</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="hscTotal">Total Marks</label>
+            <input type="text" name="hscTotal" ng-model="hscTotal" id="hscTotal" class="form-control" required>
+            <p ng-show="studentForm.hscTotal.$invalid && !studentForm.hscTotal.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="hscObtained">Obtained Marks</label>
+            <input type="text" name="hscObtained" ng-model="hscObtained" id="hscObtained" class="form-control" required>
+            <p ng-show="studentForm.hscObtained.$invalid && !studentForm.hscObtained.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="hscSeat">Seat Number</label>
+            <input type="text" name="hscSeat" ng-model="hscSeat" id="hscSeat" class="form-control" required>
+            <p ng-show="studentForm.hscSeat.$invalid && !studentForm.hscSeat.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <hr>
+        <h3>Guardian's Information</h3>
+        <div class="form-group">
+            <label for="guardianName">Guardian Name</label>
+            <input type="text" name="guardianName" ng-model="guardianName" id="guardianName" class="form-control" required>
+            <p ng-show="studentForm.guardianName.$invalid && !studentForm.guardianName.$pristine" class="help-block">Field is required</p>
+        </div>
+        <div class="form-group">
+            <label for="guardianCnic">Guardian CNIC</label>
+            <input type="text" name="guardianCnic" ng-model="guardianCnic" id="guardianCnic" class="form-control" required>
+            <p ng-show="studentForm.guardianCnic.$invalid && !studentForm.guardianCnic.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="relation">Relation With Guardian</label>
+            <input type="text" name="relation" ng-model="relation" id="relation" class="form-control" required>
+            <p ng-show="studentForm.relation.$invalid && !studentForm.relation.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="cccupation">Occupation</label>
+            <input type="text" name="occupation" ng-model="occupation" id="occupation" class="form-control" required>
+            <p ng-show="studentForm.occupation.$invalid && !studentForm.occupation.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="monthlyIncome">Monthly Income</label>
+            <input type="number" name="monthlyIncome" ng-model="monthlyIncome" id="monthlyIncome" class="form-control" required>
+            <p ng-show="studentForm.monthlyIncome.$invalid && !studentForm.monthlyIncome.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="guardianMobile">Mobile Number</label>
+            <input type="text" name="guardianMobile" ng-model="guardianMobile" id="guardianMobile" class="form-control" required>
+            <p ng-show="studentForm.guardianMobile.$invalid && !studentForm.guardianMobile.$pristine" class="help-block">Field is required</p>
+
+        </div>
+         <div class="form-group">
+            <label for="guardianAddress">Address</label>
+            <textarea ng-model="guardianAddress" name="guardianAddress" id="guardianAddress" class="form-control" required></textarea>
+            <p ng-show="studentForm.guardianAddress.$invalid && !studentForm.guardianAddress.$pristine" class="help-block">Field is required</p>
+
+        </div>
+        <div class="form-group">
+            <label for="guardianEmail">Email</label>
+            <input type="email" name="guardianEmail" ng-model="guardianEmail" id="guardianEmail" class="form-control" required>
+            <p ng-show="studentForm.guardianEmail.$invalid && !studentForm.guardianEmail.$pristine" class="help-block">Field is required</p>
+
+        </div>
+
+        <input type="hidden" ng-model="studentId">
+    </form>
+    <input type="submit" value="Submit" ng-click="saveStudent(studentForm.$valid)" class="btn btn-primary" ng-disabled="studentForm.$invalid">
+</div>

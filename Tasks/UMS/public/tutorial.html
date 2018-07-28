@@ -1,0 +1,99 @@
+<html lang = "en">
+   <head>
+      <link rel = "stylesheet"
+         href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+      <script language = "javascript">
+         angular
+            .module('firstApplication', ['ngMaterial'])
+            .controller('dialogController', dialogController);
+
+         function dialogController ($scope, $mdDialog) {
+            $scope.status = '';
+            $scope.items = [1,2,3,4,5];
+            $scope.showAlert = function(ev) {
+               $mdDialog.show (
+                  $mdDialog.alert()
+                     .parent(angular.element(document.querySelector('#dialogContainer')))
+                     .clickOutsideToClose(true)
+                     .title('TutorialsPoint.com')
+                     .textContent('Welcome to TutorialsPoint.com')
+                     .ariaLabel('Welcome to TutorialsPoint.com')
+                     .ok('Ok!')
+                     .targetEvent(ev)
+               );
+            };
+			
+            $scope.showConfirm = function(event) {
+               var confirm = $mdDialog.confirm()
+                  .title('Are you sure to delete the record?')
+                  .textContent('Record will be deleted permanently.')
+                  .ariaLabel('TutorialsPoint.com')
+                  .targetEvent(event)
+                  .ok('Yes')
+                  .cancel('No');
+               $mdDialog.show(confirm).then(function() {
+                  $scope.status = 'Record deleted successfully!';
+               }, function() {
+                  $scope.status = 'You decided to keep your record.';
+               });
+            };
+			
+            $scope.showCustom = function(event) {
+               $mdDialog.show ({
+                  clickOutsideToClose: true,
+                  scope: $scope,        
+                  preserveScope: true,           
+                  template: '<md-dialog>' +
+                              '  <md-dialog-content>' +
+                              '     Welcome to TutorialsPoint.com' +
+                              '  </md-dialog-content>' +
+                              '</md-dialog>',
+                  controller: function DialogController($scope, $mdDialog) {
+                     $scope.closeDialog = function() {
+                        $mdDialog.hide();
+                     }
+                  }
+               });
+            };
+         }                 
+      </script>      
+   </head>
+   
+   <body ng-app = "firstApplication"> 
+      <div id = "dialogContainer" ng-controller = "dialogController as ctrl"
+         layout = "row" ng-cloak>
+         <md-content>
+            <h4>Standard Alert</h4>
+            <md-button class = "md-primary md-raised"
+               ng-click = "showAlert($event)" flex = "100"  flex-gt-md = "auto">
+               Alert
+            </md-button>
+            
+            <h4>Confirm Dialog Box</h4>
+            <md-button class = "md-primary md-raised" ng-click = "showConfirm($event)"
+               flex = "100"  flex-gt-md = "auto">
+               Confirm
+            </md-button>
+            
+            <h4>Custom Dialog Box</h4>
+            <md-button class = "md-primary md-raised" ng-click = "showCustom($event)"
+               flex = "100"  flex-gt-md = "auto">
+               Custom
+            </md-button>
+            
+            <div ng-if = "status">
+               <br/>
+               <b layout = "row" layout-align = "center center" class = "md-padding">
+                  {{status}}
+               </b>
+            </div>
+            
+         </md-content>	 
+      </div>
+   </body>
+</html>

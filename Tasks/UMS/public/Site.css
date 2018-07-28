@@ -1,0 +1,9 @@
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.help-block{
+    color:red;
+}
